@@ -7,9 +7,11 @@
 
 import UIKit
 
-class HeroListViewController: UIViewController {
+class HeroListViewController: UIViewController, StoryboardViewController {
 
     @IBOutlet private weak var tableView: UITableView!
+    
+    weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
