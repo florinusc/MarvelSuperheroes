@@ -18,13 +18,13 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = HeroListViewController.getInstance()
+        let viewController = HeroListViewController.getInstance(with: HeroListViewModel())
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func presentDetail() {
-        let viewController = HeroDetailViewController.getInstance()
+    func presentDetail(with viewModel: HeroDetailViewModel) {
+        let viewController = HeroDetailViewController.getInstance(with: viewModel)
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }

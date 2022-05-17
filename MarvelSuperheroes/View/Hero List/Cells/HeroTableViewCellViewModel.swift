@@ -9,12 +9,30 @@ import Foundation
 
 class HeroTableViewCellViewModel {
     
+    private let hero: Superhero
+    
     var imageURL: URL? {
-        return URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg")
+        return URL(string: hero.imageURL)
     }
     
     var heroName: String {
-        return "A.I.M"
+        return hero.name
+    }
+    
+    init(hero: Superhero) {
+        self.hero = hero
+    }
+    
+}
+
+extension HeroTableViewCellViewModel: Hashable {
+    
+    static func == (lhs: HeroTableViewCellViewModel, rhs: HeroTableViewCellViewModel) -> Bool {
+        return lhs.hero == rhs.hero
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(hero)
     }
     
 }

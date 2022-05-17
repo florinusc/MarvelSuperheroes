@@ -12,11 +12,15 @@ class SquadHeroCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var heroImageView: UIImageView!
     @IBOutlet private weak var heroLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        heroImageView.setImage(with: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg"))
-        
+    var viewModel: SquadHeroCollectionViewCellViewModel! {
+        didSet {
+            setUp(with: viewModel)
+        }
+    }
+    
+    private func setUp(with viewModel: SquadHeroCollectionViewCellViewModel) {
+        heroLabel.text = viewModel.heroName
+        heroImageView.setImage(with: viewModel.heroImageURL)
     }
     
 }

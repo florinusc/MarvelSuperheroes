@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeroDetailViewController: UIViewController, StoryboardViewController {
+class HeroDetailViewController: UIViewController, StoryboardViewController, ViewModelBased {
     
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var heroImageView: UIImageView!
@@ -15,11 +15,11 @@ class HeroDetailViewController: UIViewController, StoryboardViewController {
     @IBOutlet private weak var toggleButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
+    var viewModel: HeroDetailViewModel!
     weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        heroImageView.setImage(with: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg"))
         
         scrollView.contentInsetAdjustmentBehavior = .never
         
@@ -38,6 +38,14 @@ class HeroDetailViewController: UIViewController, StoryboardViewController {
             toggleButton.layer.shadowOffset = CGSize(width: 0, height: 4)
             toggleButton.setTitle("💪  Recruit to Squad", for: .normal)
         }
+        
+        setUp()
+    }
+    
+    private func setUp() {
+        titleLabel.text = viewModel.name
+        descriptionLabel.text = viewModel.description
+        heroImageView.setImage(with: viewModel.imageURL)
     }
     
     @IBAction private func backButtonTapped() {

@@ -34,6 +34,9 @@
 		9F5B08652832607000122600 /* SquadHeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08632832607000122600 /* SquadHeroCollectionViewCell.swift */; };
 		9F5B08662832607000122600 /* SquadHeroCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F5B08642832607000122600 /* SquadHeroCollectionViewCell.xib */; };
 		9F5B0868283375CB00122600 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B0867283375CB00122600 /* UICollectionView+Extension.swift */; };
+		9F5B086A283379CA00122600 /* Superhero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B0869283379CA00122600 /* Superhero.swift */; };
+		9F5B086C28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B086B28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift */; };
+		9F5B086E2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B086D2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		9F5B08632832607000122600 /* SquadHeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeroCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F5B08642832607000122600 /* SquadHeroCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SquadHeroCollectionViewCell.xib; sourceTree = "<group>"; };
 		9F5B0867283375CB00122600 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		9F5B0869283379CA00122600 /* Superhero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superhero.swift; sourceTree = "<group>"; };
+		9F5B086B28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCarouselTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		9F5B086D2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeroCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,7 @@
 		9F5B0834282FB27800122600 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F5B0869283379CA00122600 /* Superhero.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,8 +228,10 @@
 				9F5B08422830CF5900122600 /* HeroTableViewCellViewModel.swift */,
 				9F5B085F28325CDD00122600 /* HeroCarouselTableViewCell.swift */,
 				9F5B086028325CDD00122600 /* HeroCarouselTableViewCell.xib */,
+				9F5B086B28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift */,
 				9F5B08632832607000122600 /* SquadHeroCollectionViewCell.swift */,
 				9F5B08642832607000122600 /* SquadHeroCollectionViewCell.xib */,
+				9F5B086D2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -417,7 +426,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F5B086E2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift in Sources */,
+				9F5B086A283379CA00122600 /* Superhero.swift in Sources */,
 				9F5B0868283375CB00122600 /* UICollectionView+Extension.swift in Sources */,
+				9F5B086C28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift in Sources */,
 				9F5B0805282FB25500122600 /* HeroListViewController.swift in Sources */,
 				9F5B08532830DD3200122600 /* StoryboardViewController.swift in Sources */,
 				9F5B08402830CC0900122600 /* HeroTableViewCell.swift in Sources */,

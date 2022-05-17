@@ -7,10 +7,19 @@
 
 import UIKit
 
-class HeroListViewController: UIViewController, StoryboardViewController {
+enum HeroesSection: Int {
+    case carousel
+    case heroes
+}
+
+typealias HeroesDataSource = UITableViewDiffableDataSource<HeroesSection, AnyHashable>
+typealias HeroesSnapshot = NSDiffableDataSourceSnapshot<HeroesSection, AnyHashable>
+
+class HeroListViewController: UIViewController, StoryboardViewController, ViewModelBased {
 
     @IBOutlet private weak var tableView: UITableView!
     
+    var viewModel: HeroListViewModel!
     weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
@@ -21,35 +30,54 @@ class HeroListViewController: UIViewController, StoryboardViewController {
     private func setUp() {
         navigationController?.navigationBar.isHidden = true
         setUpTableView()
+        viewModel.dataSource = createDataSource()
     }
     
     private func setUpTableView() {
         tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(HeroTableViewCell.self)
         tableView.register(HeroCarouselTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
     }
+    
+    private func createDataSource() -> HeroesDataSource {
+        return HeroesDataSource(tableView: tableView) { (tableView, indexPath, itemIdentifier) -> UITableViewCell? in
+            
+            if let viewModel = itemIdentifier as? HeroCarouselTableViewCellViewModel {
+                let cell: HeroCarouselTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.collectionViewDelegate = self
+                cell.viewModel = viewModel
+                return cell
+            }
+                
+            
+            if let viewModel = itemIdentifier as? HeroTableViewCellViewModel {
+                let cell: HeroTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.viewModel = viewModel
+                return cell
+            }
+            
+            return nil
+            
+        }
+    }
 
 }
 
-extension HeroListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell: HeroCarouselTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-            return cell
-        }
-        
-        let cell: HeroTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.viewModel = HeroTableViewCellViewModel()
-        return cell
-    }
+extension HeroListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.presentDetail()
+        guard let heroDetailViewModel = viewModel.detailViewModel(at: indexPath) else { return }
+        coordinator?.presentDetail(with: heroDetailViewModel)
     }
+    
+}
+
+extension HeroListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let heroDetailViewModel = viewModel.carouselDetailViewModel(at: indexPath.row) else { return }
+        coordinator?.presentDetail(with: heroDetailViewModel)
+    }
+    
 }
