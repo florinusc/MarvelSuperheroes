@@ -26,6 +26,7 @@ class HeroListViewModel: ViewModel {
                              imageURL: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg")
         
         self.heroes = [hero]
+        self.squadHeroes = [hero]
         
         let heroViewModel = HeroTableViewCellViewModel(hero: hero)
         
@@ -44,12 +45,12 @@ class HeroListViewModel: ViewModel {
     
     func detailViewModel(at indexPath: IndexPath) -> HeroDetailViewModel? {
         let hero = heroes[indexPath.row]
-        return HeroDetailViewModel(hero: hero)
+        return HeroDetailViewModel(hero: hero, inSquad: false)
     }
     
     func carouselDetailViewModel(at index: Int) -> HeroDetailViewModel? {
         let hero = squadHeroes[index]
-        return HeroDetailViewModel(hero: hero)
+        return HeroDetailViewModel(hero: hero, inSquad: true)
     }
     
 }

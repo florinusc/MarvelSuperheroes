@@ -23,8 +23,16 @@ class HeroDetailViewModel: ViewModel {
         return hero.description
     }
     
-    init(hero: Superhero) {
+    private(set) var inSquad: Bool
+    
+    init(hero: Superhero, inSquad: Bool) {
         self.hero = hero
+        self.inSquad = inSquad
+    }
+    
+    func toggleSquadMembership() {
+        inSquad = !inSquad
+        // TODO: - Update db
     }
     
 }

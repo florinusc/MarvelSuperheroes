@@ -53,6 +53,9 @@
                                                                 <integer key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="toggleButtonTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pAz-9I-FT6"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mko-Wa-WPy">
                                                         <rect key="frame" x="0.0" y="115" width="382" height="1138"/>
