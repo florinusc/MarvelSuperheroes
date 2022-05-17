@@ -26,6 +26,14 @@
 		9F5B08502830DB6E00122600 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B084F2830DB6E00122600 /* MainCoordinator.swift */; };
 		9F5B08532830DD3200122600 /* StoryboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08522830DD3200122600 /* StoryboardViewController.swift */; };
 		9F5B08552830DD4600122600 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08542830DD4600122600 /* ViewModel.swift */; };
+		9F5B08582832328000122600 /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08572832328000122600 /* HeroDetailViewController.swift */; };
+		9F5B085A2832328C00122600 /* HeroDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F5B08592832328C00122600 /* HeroDetailViewController.storyboard */; };
+		9F5B085C2832329600122600 /* HeroDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B085B2832329600122600 /* HeroDetailViewModel.swift */; };
+		9F5B086128325CDD00122600 /* HeroCarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B085F28325CDD00122600 /* HeroCarouselTableViewCell.swift */; };
+		9F5B086228325CDD00122600 /* HeroCarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F5B086028325CDD00122600 /* HeroCarouselTableViewCell.xib */; };
+		9F5B08652832607000122600 /* SquadHeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08632832607000122600 /* SquadHeroCollectionViewCell.swift */; };
+		9F5B08662832607000122600 /* SquadHeroCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F5B08642832607000122600 /* SquadHeroCollectionViewCell.xib */; };
+		9F5B0868283375CB00122600 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B0867283375CB00122600 /* UICollectionView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +76,14 @@
 		9F5B084F2830DB6E00122600 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		9F5B08522830DD3200122600 /* StoryboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardViewController.swift; sourceTree = "<group>"; };
 		9F5B08542830DD4600122600 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9F5B08572832328000122600 /* HeroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
+		9F5B08592832328C00122600 /* HeroDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroDetailViewController.storyboard; sourceTree = "<group>"; };
+		9F5B085B2832329600122600 /* HeroDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModel.swift; sourceTree = "<group>"; };
+		9F5B085F28325CDD00122600 /* HeroCarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCarouselTableViewCell.swift; sourceTree = "<group>"; };
+		9F5B086028325CDD00122600 /* HeroCarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroCarouselTableViewCell.xib; sourceTree = "<group>"; };
+		9F5B08632832607000122600 /* SquadHeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeroCollectionViewCell.swift; sourceTree = "<group>"; };
+		9F5B08642832607000122600 /* SquadHeroCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SquadHeroCollectionViewCell.xib; sourceTree = "<group>"; };
+		9F5B0867283375CB00122600 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +174,7 @@
 		9F5B0835282FB27C00122600 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F5B08562832326F00122600 /* Hero Detail */,
 				9F5B083D2830CBEE00122600 /* Hero List */,
 			);
 			path = View;
@@ -202,6 +219,10 @@
 				9F5B083E2830CC0900122600 /* HeroTableViewCell.swift */,
 				9F5B083F2830CC0900122600 /* HeroTableViewCell.xib */,
 				9F5B08422830CF5900122600 /* HeroTableViewCellViewModel.swift */,
+				9F5B085F28325CDD00122600 /* HeroCarouselTableViewCell.swift */,
+				9F5B086028325CDD00122600 /* HeroCarouselTableViewCell.xib */,
+				9F5B08632832607000122600 /* SquadHeroCollectionViewCell.swift */,
+				9F5B08642832607000122600 /* SquadHeroCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -222,6 +243,7 @@
 			children = (
 				9F5B08482830CFF600122600 /* UIImageView+Extension.swift */,
 				9F5B084A2830D72E00122600 /* UITableView+Extension.swift */,
+				9F5B0867283375CB00122600 /* UICollectionView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,6 +264,16 @@
 				9F5B08542830DD4600122600 /* ViewModel.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9F5B08562832326F00122600 /* Hero Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9F5B08572832328000122600 /* HeroDetailViewController.swift */,
+				9F5B08592832328C00122600 /* HeroDetailViewController.storyboard */,
+				9F5B085B2832329600122600 /* HeroDetailViewModel.swift */,
+			);
+			path = "Hero Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,8 +388,11 @@
 			files = (
 				9F5B0810282FB25700122600 /* LaunchScreen.storyboard in Resources */,
 				9F5B080D282FB25700122600 /* Assets.xcassets in Resources */,
+				9F5B08662832607000122600 /* SquadHeroCollectionViewCell.xib in Resources */,
+				9F5B085A2832328C00122600 /* HeroDetailViewController.storyboard in Resources */,
 				9F5B0808282FB25500122600 /* HeroListViewController.storyboard in Resources */,
 				9F5B08412830CC0900122600 /* HeroTableViewCell.xib in Resources */,
+				9F5B086228325CDD00122600 /* HeroCarouselTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F5B0868283375CB00122600 /* UICollectionView+Extension.swift in Sources */,
 				9F5B0805282FB25500122600 /* HeroListViewController.swift in Sources */,
 				9F5B08532830DD3200122600 /* StoryboardViewController.swift in Sources */,
 				9F5B08402830CC0900122600 /* HeroTableViewCell.swift in Sources */,
@@ -389,8 +425,12 @@
 				9F5B084B2830D72E00122600 /* UITableView+Extension.swift in Sources */,
 				9F5B08492830CFF600122600 /* UIImageView+Extension.swift in Sources */,
 				9F5B08552830DD4600122600 /* ViewModel.swift in Sources */,
+				9F5B08652832607000122600 /* SquadHeroCollectionViewCell.swift in Sources */,
 				9F5B08502830DB6E00122600 /* MainCoordinator.swift in Sources */,
 				9F5B0801282FB25500122600 /* AppDelegate.swift in Sources */,
+				9F5B086128325CDD00122600 /* HeroCarouselTableViewCell.swift in Sources */,
+				9F5B085C2832329600122600 /* HeroDetailViewModel.swift in Sources */,
+				9F5B08582832328000122600 /* HeroDetailViewController.swift in Sources */,
 				9F5B080B282FB25500122600 /* MarvelSuperheroes.xcdatamodeld in Sources */,
 				9F5B0803282FB25500122600 /* SceneDelegate.swift in Sources */,
 				9F5B08432830CF5900122600 /* HeroTableViewCellViewModel.swift in Sources */,

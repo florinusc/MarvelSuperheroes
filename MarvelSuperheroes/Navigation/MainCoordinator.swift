@@ -23,4 +23,14 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
+    func presentDetail() {
+        let viewController = HeroDetailViewController.getInstance()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func dismissDetail() {
+        navigationController.popToRootViewController(animated: true)
+    }
+    
 }
