@@ -15,19 +15,7 @@ class HeroListViewModel: ViewModel {
     private var carouselSnapshot = HeroCarouselSnapshot()
     private var squadHeroes = [Superhero]() {
         didSet {
-            carouselSnapshot.deleteSections([.main])
-            guard squadHeroes.count > 0 else { return }
-            carouselSnapshot.appendSections([.main])
-            carouselSnapshot.appendItems(squadHeroes.map { SquadHeroCollectionViewCellViewModel(hero: $0) }, toSection: .main)
-            let heroCarouselViewModel = HeroCarouselTableViewCellViewModel(snapshot: carouselSnapshot)
-            if snapshot.indexOfSection(.heroes) != nil {
-                snapshot.insertSections([.carousel], beforeSection: .heroes)
-            } else {
-                snapshot.appendSections([.carousel])
-            }
-            
-            snapshot.appendItems([heroCarouselViewModel], toSection: .carousel)
-            dataSource.apply(snapshot, animatingDifferences: true)
+            updateDataSourceWithSquad()
         }
     }
     private var heroes = [Superhero]() {
@@ -37,10 +25,7 @@ class HeroListViewModel: ViewModel {
     }
     private var heroViewModels = [HeroTableViewCellViewModel]() {
         didSet {
-            snapshot.deleteSections([.heroes])
-            snapshot.appendSections([.heroes])
-            snapshot.appendItems(heroViewModels, toSection: .heroes)
-            dataSource.apply(snapshot, animatingDifferences: true)
+            updateDataSourceWithHeroViewModels()
         }
     }
     
@@ -66,7 +51,9 @@ class HeroListViewModel: ViewModel {
             case .failure(let error):
                 squadError = error
             case .success(let squadMembers):
-                self.squadHeroes = squadMembers
+                if squadMembers != self.squadHeroes {
+                    self.squadHeroes = squadMembers
+                }
             }
         }
         dispatchGroup.enter()
@@ -77,7 +64,9 @@ class HeroListViewModel: ViewModel {
             case .failure(let error):
                 heroesError = error
             case .success(let heroes):
-                self.heroes = heroes
+                if heroes != self.heroes {
+                    self.heroes = heroes
+                }
             }
         }
         dispatchGroup.notify(queue: .main) {
@@ -87,12 +76,12 @@ class HeroListViewModel: ViewModel {
     
     func detailViewModel(at indexPath: IndexPath) -> HeroDetailViewModel? {
         let hero = heroes[indexPath.row]
-        return HeroDetailViewModel(hero: hero, inSquad: false)
+        return HeroDetailViewModel(repository: repository, hero: hero, inSquad: squadHeroes.contains(where: { $0 == hero }))
     }
     
     func carouselDetailViewModel(at index: Int) -> HeroDetailViewModel? {
         let hero = squadHeroes[index]
-        return HeroDetailViewModel(hero: hero, inSquad: true)
+        return HeroDetailViewModel(repository: repository, hero: hero, inSquad: true)
     }
     
     private func handleErrors(squadError: Error?, heroesError: Error?, _ handler: @escaping (Error?) -> Void) {
@@ -105,6 +94,32 @@ class HeroListViewModel: ViewModel {
         } else if squadError != nil && heroesError == nil {
             handler(CustomError.custom(message: "Could not retrieve squad members"))
         }
+    }
+    
+    private func updateDataSourceWithSquad() {
+        carouselSnapshot.deleteSections([.main])
+        snapshot.deleteSections([.carousel])
+        if !squadHeroes.isEmpty {
+            carouselSnapshot.appendSections([.main])
+            carouselSnapshot.appendItems(squadHeroes.map { SquadHeroCollectionViewCellViewModel(hero: $0) }, toSection: .main)
+            let heroCarouselViewModel = HeroCarouselTableViewCellViewModel(snapshot: carouselSnapshot)
+            
+            if snapshot.indexOfSection(.heroes) != nil {
+                snapshot.insertSections([.carousel], beforeSection: .heroes)
+            } else {
+                snapshot.appendSections([.carousel])
+            }
+            
+            snapshot.appendItems([heroCarouselViewModel], toSection: .carousel)
+        }
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func updateDataSourceWithHeroViewModels() {
+        snapshot.deleteSections([.heroes])
+        snapshot.appendSections([.heroes])
+        snapshot.appendItems(heroViewModels, toSection: .heroes)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
 }

@@ -27,15 +27,15 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
         setUp()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getData()
+    }
+    
     private func setUp() {
         navigationController?.navigationBar.isHidden = true
         setUpTableView()
         viewModel.dataSource = createDataSource()
-        viewModel.getData { [weak self] error in
-            if let error = error {
-                self?.presentAlert(for: error)
-            }
-        }
     }
     
     private func setUpTableView() {
@@ -43,6 +43,17 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
         tableView.register(HeroTableViewCell.self)
         tableView.register(HeroCarouselTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+    }
+    
+    private func getData() {
+        let loadingViewController = LoadingViewController()
+        add(loadingViewController)
+        viewModel.getData { [weak self] error in
+            loadingViewController.remove()
+            if let error = error {
+                self?.presentAlert(for: error)
+            }
+        }
     }
     
     private func createDataSource() -> HeroesDataSource {

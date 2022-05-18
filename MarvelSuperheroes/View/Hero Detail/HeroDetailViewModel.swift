@@ -9,6 +9,7 @@ import Foundation
 
 class HeroDetailViewModel: ViewModel {
     
+    private let repository: Repository
     private let hero: Superhero
     
     var imageURL: URL? {
@@ -25,14 +26,19 @@ class HeroDetailViewModel: ViewModel {
     
     private(set) var inSquad: Bool
     
-    init(hero: Superhero, inSquad: Bool) {
+    init(repository: Repository, hero: Superhero, inSquad: Bool) {
+        self.repository = repository
         self.hero = hero
         self.inSquad = inSquad
     }
     
     func toggleSquadMembership() {
+        if inSquad {
+            repository.removeSquadMember(hero: hero)
+        } else {
+            repository.addSquadMember(hero: hero)
+        }
         inSquad = !inSquad
-        // TODO: - Update db
     }
     
 }

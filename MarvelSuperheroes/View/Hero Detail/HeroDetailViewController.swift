@@ -29,7 +29,7 @@ class HeroDetailViewController: UIViewController, StoryboardViewController, View
         descriptionLabel.text = viewModel.description
         heroImageView.setImage(with: viewModel.imageURL)
         toggleButton.layer.masksToBounds = false
-        toggleButton.layer.shadowColor = UIColor(named: "Button")?.cgColor
+        toggleButton.layer.shadowColor = UIColor.button.cgColor
         toggleButton.layer.shadowRadius = 16
         toggleButton.layer.shadowOffset = CGSize(width: 0, height: 4)
         if viewModel.inSquad {
@@ -43,12 +43,12 @@ class HeroDetailViewController: UIViewController, StoryboardViewController, View
         toggleButton.backgroundColor = .clear
         toggleButton.layer.shadowOpacity = 0
         toggleButton.layer.borderWidth = 3
-        toggleButton.layer.borderColor = UIColor(named: "Button")?.cgColor
+        toggleButton.layer.borderColor = UIColor.button.cgColor
         toggleButton.setTitle("🔥  Fire from Squad", for: .normal)
     }
     
     private func setButtonForNonMember() {
-        toggleButton.backgroundColor = UIColor(named: "Button")
+        toggleButton.backgroundColor = UIColor.button
         toggleButton.layer.shadowOpacity = 1
         toggleButton.setTitle("💪  Recruit to Squad", for: .normal)
     }
