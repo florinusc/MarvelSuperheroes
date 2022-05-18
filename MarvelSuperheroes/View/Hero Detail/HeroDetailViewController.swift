@@ -53,7 +53,7 @@ class HeroDetailViewController: UIViewController, StoryboardViewController, View
         toggleButton.setTitle("💪  Recruit to Squad", for: .normal)
     }
     
-    @IBAction private func toggleButtonTapped() {
+    private func toggleSquadMembership() {
         viewModel.toggleSquadMembership()
         UIView.animate(withDuration: 0.5) {
             if self.viewModel.inSquad {
@@ -61,6 +61,25 @@ class HeroDetailViewController: UIViewController, StoryboardViewController, View
             } else {
                 self.setButtonForNonMember()
             }
+        }
+    }
+    
+    private func presentConfirmationAlert() {
+        let alert = UIAlertController(title: "Fire from squad", message: "Are you sure you want to fire \(viewModel.name) from squad?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "🔥 Yes", style: .default, handler: { [weak self] _ in
+            self?.toggleSquadMembership()
+        })
+        let noAction = UIAlertAction(title: "No", style: .default)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func toggleButtonTapped() {
+        if viewModel.inSquad {
+            presentConfirmationAlert()
+        } else {
+            toggleSquadMembership()
         }
     }
     

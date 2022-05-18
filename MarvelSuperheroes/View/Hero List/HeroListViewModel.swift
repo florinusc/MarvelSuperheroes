@@ -81,15 +81,7 @@ class HeroListViewModel: ViewModel {
             }
         }
         dispatchGroup.notify(queue: .main) {
-            if squadError == nil && heroesError == nil {
-                handler(nil)
-            } else if squadError != nil && heroesError != nil {
-                handler(CustomError.custom(message: "Could not retrieve heroes and squad members"))
-            } else if squadError == nil && heroesError != nil {
-                handler(CustomError.custom(message: "Could not retrieve heroes"))
-            } else if squadError != nil && heroesError == nil {
-                handler(CustomError.custom(message: "Could not retrieve squad members"))
-            }
+            self.handleErrors(squadError: squadError, heroesError: heroesError, handler)
         }
     }
     
@@ -101,6 +93,18 @@ class HeroListViewModel: ViewModel {
     func carouselDetailViewModel(at index: Int) -> HeroDetailViewModel? {
         let hero = squadHeroes[index]
         return HeroDetailViewModel(hero: hero, inSquad: true)
+    }
+    
+    private func handleErrors(squadError: Error?, heroesError: Error?, _ handler: @escaping (Error?) -> Void) {
+        if squadError == nil && heroesError == nil {
+            handler(nil)
+        } else if squadError != nil && heroesError != nil {
+            handler(CustomError.custom(message: "Could not retrieve heroes and squad members"))
+        } else if squadError == nil && heroesError != nil {
+            handler(CustomError.custom(message: "Could not retrieve heroes"))
+        } else if squadError != nil && heroesError == nil {
+            handler(CustomError.custom(message: "Could not retrieve squad members"))
+        }
     }
     
 }
