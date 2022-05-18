@@ -37,6 +37,9 @@
 		9F5B086A283379CA00122600 /* Superhero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B0869283379CA00122600 /* Superhero.swift */; };
 		9F5B086C28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B086B28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift */; };
 		9F5B086E2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B086D2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift */; };
+		9F5B08702833E33C00122600 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B086F2833E33C00122600 /* Repository.swift */; };
+		9F5B08722833E3D600122600 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08712833E3D600122600 /* CustomError.swift */; };
+		9F5B08742834CECE00122600 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08732834CECE00122600 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,9 @@
 		9F5B0869283379CA00122600 /* Superhero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superhero.swift; sourceTree = "<group>"; };
 		9F5B086B28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCarouselTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		9F5B086D2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeroCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		9F5B086F2833E33C00122600 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		9F5B08712833E3D600122600 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		9F5B08732834CECE00122600 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				9F5B0809282FB25500122600 /* MarvelSuperheroes.xcdatamodeld */,
+				9F5B086F2833E33C00122600 /* Repository.swift */,
+				9F5B08712833E3D600122600 /* CustomError.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 				9F5B08482830CFF600122600 /* UIImageView+Extension.swift */,
 				9F5B084A2830D72E00122600 /* UITableView+Extension.swift */,
 				9F5B0867283375CB00122600 /* UICollectionView+Extension.swift */,
+				9F5B08732834CECE00122600 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -426,11 +435,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F5B08742834CECE00122600 /* UIViewController+Extension.swift in Sources */,
+				9F5B08722833E3D600122600 /* CustomError.swift in Sources */,
 				9F5B086E2833BF0900122600 /* SquadHeroCollectionViewCellViewModel.swift in Sources */,
 				9F5B086A283379CA00122600 /* Superhero.swift in Sources */,
 				9F5B0868283375CB00122600 /* UICollectionView+Extension.swift in Sources */,
 				9F5B086C28337C5800122600 /* HeroCarouselTableViewCellViewModel.swift in Sources */,
 				9F5B0805282FB25500122600 /* HeroListViewController.swift in Sources */,
+				9F5B08702833E33C00122600 /* Repository.swift in Sources */,
 				9F5B08532830DD3200122600 /* StoryboardViewController.swift in Sources */,
 				9F5B08402830CC0900122600 /* HeroTableViewCell.swift in Sources */,
 				9F5B084E2830DB6500122600 /* Coordinator.swift in Sources */,

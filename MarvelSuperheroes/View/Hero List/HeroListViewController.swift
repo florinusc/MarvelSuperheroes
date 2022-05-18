@@ -31,6 +31,11 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
         navigationController?.navigationBar.isHidden = true
         setUpTableView()
         viewModel.dataSource = createDataSource()
+        viewModel.getData { [weak self] error in
+            if let error = error {
+                self?.presentAlert(for: error)
+            }
+        }
     }
     
     private func setUpTableView() {

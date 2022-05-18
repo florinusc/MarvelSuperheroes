@@ -9,6 +9,8 @@ import UIKit
 
 class MainCoordinator: Coordinator {
     
+    private let repository = MockRepository()
+    
     var children: [Coordinator] = []
     
     let navigationController: UINavigationController
@@ -18,7 +20,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = HeroListViewController.getInstance(with: HeroListViewModel())
+        let viewController = HeroListViewController.getInstance(with: HeroListViewModel(repository: repository))
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }
