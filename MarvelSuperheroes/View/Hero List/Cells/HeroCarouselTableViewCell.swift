@@ -36,11 +36,9 @@ class HeroCarouselTableViewCell: UITableViewCell {
     
     private func createDataSource() -> HeroCarouselDataSource {
         return HeroCarouselDataSource(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
-            
             let cell: SquadHeroCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.viewModel = itemIdentifier
             return cell
-            
         }
     }
     

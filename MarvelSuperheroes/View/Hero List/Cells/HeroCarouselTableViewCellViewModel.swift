@@ -9,16 +9,21 @@ import Foundation
 
 class HeroCarouselTableViewCellViewModel {
     
-    private let snapshot: HeroCarouselSnapshot
+    private var snapshot: HeroCarouselSnapshot
     
-    var dataSource: HeroCarouselDataSource! {
+    var dataSource: HeroCarouselDataSource? {
         didSet {
-            dataSource.apply(snapshot, animatingDifferences: true)
+            dataSource?.apply(snapshot, animatingDifferences: true)
         }
     }
     
     init(snapshot: HeroCarouselSnapshot) {
         self.snapshot = snapshot
+    }
+    
+    func updateSnapshot(_ newSnapshot: HeroCarouselSnapshot) {
+        snapshot = newSnapshot
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
 }

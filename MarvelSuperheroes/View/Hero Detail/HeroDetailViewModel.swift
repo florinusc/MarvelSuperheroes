@@ -34,9 +34,9 @@ class HeroDetailViewModel: ViewModel {
     
     func toggleSquadMembership() {
         if inSquad {
-            repository.removeSquadMember(hero: hero)
+            try? repository.removeSquadMember(hero: hero)
         } else {
-            repository.addSquadMember(hero: hero)
+            try? repository.addSquadMember(hero: hero)
         }
         inSquad = !inSquad
     }

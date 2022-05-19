@@ -29,13 +29,14 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getData()
+        viewModel.getSquadMembers()
     }
     
     private func setUp() {
         navigationController?.navigationBar.isHidden = true
         setUpTableView()
         viewModel.dataSource = createDataSource()
+        getSuperheroes()
     }
     
     private func setUpTableView() {
@@ -45,10 +46,10 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
     }
     
-    private func getData() {
+    private func getSuperheroes() {
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
-        viewModel.getData { [weak self] error in
+        viewModel.getSuperheroes { [weak self] error in
             loadingViewController.remove()
             if let error = error {
                 self?.presentAlert(for: error)

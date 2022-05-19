@@ -9,9 +9,9 @@ import Foundation
 
 protocol Repository {
     func getSuperheroes(_ handler: @escaping (Result<[Superhero], Error>) -> Void)
-    func getSquadMembers(_ handler: @escaping (Result<[Superhero], Error>) -> Void)
-    func addSquadMember(hero: Superhero)
-    func removeSquadMember(hero: Superhero)
+    func getSquadMembers() throws -> [Superhero]
+    func addSquadMember(hero: Superhero) throws
+    func removeSquadMember(hero: Superhero) throws
 }
 
 class MockRepository: Repository {
@@ -48,20 +48,19 @@ class MockRepository: Repository {
         handler(.success(heroes))
     }
     
-    func getSquadMembers(_ handler: @escaping (Result<[Superhero], Error>) -> Void) {
+    func getSquadMembers() throws -> [Superhero] {
         if shouldReturnError {
-            handler(.failure(CustomError.general))
-            return
+            throw CustomError.general
         }
-        handler(.success(squadMembers))
+        return squadMembers
     }
     
-    func addSquadMember(hero: Superhero) {
+    func addSquadMember(hero: Superhero) throws {
         squadMembers.insert(hero, at: 0)
     }
     
-    func removeSquadMember(hero: Superhero) {
-        guard let index = squadMembers.firstIndex(of: hero) else { return }
+    func removeSquadMember(hero: Superhero) throws {
+        guard let index = squadMembers.firstIndex(of: hero) else { throw CustomError.general }
         squadMembers.remove(at: index)
     }
     

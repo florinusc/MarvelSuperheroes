@@ -15,3 +15,14 @@ struct Superhero: Hashable {
     let imageURL: String
     
 }
+
+extension Superhero {
+    
+    init(resource: HeroResource) {
+        self.id = "\(resource.id)"
+        self.name = resource.name
+        self.description = resource.description
+        self.imageURL = "\(resource.thumbnail.path).\(resource.thumbnail.fileExtension)"
+    }
+    
+}
