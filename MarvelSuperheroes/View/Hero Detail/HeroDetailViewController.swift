@@ -54,7 +54,12 @@ class HeroDetailViewController: UIViewController, StoryboardViewController, View
     }
     
     private func toggleSquadMembership() {
-        viewModel.toggleSquadMembership()
+        do {
+            try viewModel.toggleSquadMembership()
+        } catch let error {
+            presentAlert(for: error)
+            return
+        }
         UIView.animate(withDuration: 0.5) {
             if self.viewModel.inSquad {
                 self.setButtonForMember()

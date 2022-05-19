@@ -56,17 +56,29 @@ class HeroListViewModel: ViewModel {
         }
     }
     
-    func getSquadMembers() {
-        let squadMembers = (try? repository.getSquadMembers()) ?? []
+    func getSquadMembers() throws {
+        let squadMembers = try repository.getSquadMembers()
         self.squadHeroes = squadMembers.sorted(by: { $0.name < $1.name })
     }
     
     func detailViewModel(at indexPath: IndexPath) -> HeroDetailViewModel? {
+        guard
+            indexPath.section == snapshot.indexOfSection(.heroes),
+            indexPath.row >= 0,
+            indexPath.row < heroes.count
+        else {
+            return nil
+        }
         let hero = heroes[indexPath.row]
         return HeroDetailViewModel(repository: repository, hero: hero, inSquad: squadHeroes.contains(where: { $0 == hero }))
     }
     
     func carouselDetailViewModel(at index: Int) -> HeroDetailViewModel? {
+        guard index >= 0,
+              index < squadHeroes.count
+        else {
+            return nil
+        }
         let hero = squadHeroes[index]
         return HeroDetailViewModel(repository: repository, hero: hero, inSquad: true)
     }

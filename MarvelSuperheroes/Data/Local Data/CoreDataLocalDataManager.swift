@@ -1,14 +1,14 @@
 //
-//  LocalDataManager.swift
+//  CoreDataLocalDataManager.swift
 //  MarvelSuperheroes
 //
-//  Created by Florin Uscatu on 18.05.2022.
+//  Created by Florin Uscatu on 19.05.2022.
 //
 
 import UIKit
 import CoreData
 
-class LocalDataManager {
+class CoreDataLocalDataManager: LocalDataManager {
     
     private let entityName = "SuperheroEntity"
     

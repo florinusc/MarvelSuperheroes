@@ -29,7 +29,7 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.getSquadMembers()
+        getSquadMembers()
     }
     
     private func setUp() {
@@ -54,6 +54,14 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
             if let error = error {
                 self?.presentAlert(for: error)
             }
+        }
+    }
+    
+    private func getSquadMembers() {
+        do {
+            try viewModel.getSquadMembers()
+        } catch let error {
+            presentAlert(for: error)
         }
     }
     

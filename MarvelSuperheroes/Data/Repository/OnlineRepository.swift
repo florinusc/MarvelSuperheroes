@@ -9,6 +9,12 @@ import Foundation
 
 class OnlineRepository: Repository {
     
+    private let localDataManager: LocalDataManager
+    
+    init(localDataManager: LocalDataManager) {
+        self.localDataManager = localDataManager
+    }
+    
     func getSuperheroes(_ handler: @escaping (Result<[Superhero], Error>) -> Void) {
         SessionManager().request(type: HeroesResource.self, requestType: HeroesRequest()) { result in
             switch result {
@@ -21,15 +27,15 @@ class OnlineRepository: Repository {
     }
     
     func getSquadMembers() throws -> [Superhero] {
-        try LocalDataManager().getSquadMembers()
+        try localDataManager.getSquadMembers()
     }
     
     func addSquadMember(hero: Superhero) throws {
-        try LocalDataManager().saveSquadMember(hero: hero)
+        try localDataManager.saveSquadMember(hero: hero)
     }
     
     func removeSquadMember(hero: Superhero) throws {
-        try LocalDataManager().removeSquadMember(hero: hero)
+        try localDataManager.removeSquadMember(hero: hero)
     }
     
 }

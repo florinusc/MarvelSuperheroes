@@ -9,7 +9,7 @@ import UIKit
 
 class MainCoordinator: Coordinator {
     
-    private let repository = OnlineRepository()
+    private let repository = OnlineRepository(localDataManager: CoreDataLocalDataManager())
     
     var children: [Coordinator] = []
     
