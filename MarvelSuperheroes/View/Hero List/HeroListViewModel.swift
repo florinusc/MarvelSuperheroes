@@ -9,6 +9,12 @@ import Foundation
 
 class HeroListViewModel: ViewModel {
     
+    enum LoadMoreHandler {
+        case notRequired
+        case loading
+        case error(error: Error)
+    }
+    
     private let repository: Repository
     
     private var snapshot = HeroesSnapshot()
@@ -81,15 +87,22 @@ class HeroListViewModel: ViewModel {
         return HeroDetailViewModel(repository: repository, hero: hero, inSquad: true)
     }
     
-    func getMoreSuperheroes(after indexPath: IndexPath, _ handler: @escaping (Error?) -> Void) {
+    func getMoreSuperheroes(after indexPath: IndexPath, _ handler: @escaping (LoadMoreHandler) -> Void) {
         guard !isLoading,
               indexPath.section == snapshot.indexOfSection(.heroes),
               indexPath.row == snapshot.numberOfItems(inSection: .heroes) - 1,
               heroes.count < totalNumberOfHeroes
         else {
+            handler(.notRequired)
             return
         }
-        getSuperheroes(handler)
+        getSuperheroes { error in
+            if let error = error {
+                handler(.error(error: error))
+                return
+            }
+            handler(.loading)
+        }
     }
     
     private func refreshCarouselSnapshot() {

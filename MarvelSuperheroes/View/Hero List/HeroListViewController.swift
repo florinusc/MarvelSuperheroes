@@ -96,9 +96,12 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
 extension HeroListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewModel.getMoreSuperheroes(after: indexPath) { [weak self] error in
-            if let error = error {
+        viewModel.getMoreSuperheroes(after: indexPath) { [weak self] handler in
+            switch handler {
+            case .error(let error):
                 self?.presentAlert(for: error)
+            default:
+                break
             }
         }
     }

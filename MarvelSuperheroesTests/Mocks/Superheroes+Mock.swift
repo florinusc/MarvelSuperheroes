@@ -10,6 +10,7 @@ import Foundation
 
 extension Superheroes {
     
-    static let mock = Superheroes(total: 2, heroes: [.ironMan, .blackWidow])
+    static let firstMock = Superheroes(total: 4, heroes: [.ironMan, .blackWidow])
+    static let secondMock = Superheroes(total: 4, heroes: [.captainAmerica, .warMachine])
     
 }

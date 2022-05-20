@@ -68,6 +68,38 @@ class HeroListViewModelTests: XCTestCase {
         XCTAssertNil(carouselDetailViewModel)
     }
     
+    func test_getMoreSuperheroes_beforeLoadingAllHeroes() {
+        let viewModel = createSUT()
+        var expectedHandler: HeroListViewModel.LoadMoreHandler?
+        let expectation = XCTestExpectation()
+        getSuperheroes(for: viewModel)
+        viewModel.getMoreSuperheroes(after: IndexPath(row: 1, section: 0)) { handler in
+            expectedHandler = handler
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
+        guard case .loading = expectedHandler else {
+            XCTFail()
+            return
+        }
+    }
+    
+    func test_getMoreSuperheroes_afterLoadingAllHeroes() {
+        let viewModel = createSUT()
+        var expectedHandler: HeroListViewModel.LoadMoreHandler?
+        let expectation = XCTestExpectation()
+        getSuperheroes(for: viewModel)
+        viewModel.getMoreSuperheroes(after: IndexPath(row: 4, section: 0)) { handler in
+            expectedHandler = handler
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
+        guard case .notRequired = expectedHandler else {
+            XCTFail()
+            return
+        }
+    }
+    
     private func getSuperheroes(for viewModel: HeroListViewModel) {
         let expectation = XCTestExpectation()
         viewModel.getSuperheroes { error in

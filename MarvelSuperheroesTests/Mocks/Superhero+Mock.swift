@@ -20,4 +20,14 @@ extension Superhero {
                                       description: "",
                                       imageURL: "http://i.annihil.us/u/prod/marvel/i/mg/f/30/50fecad1f395b.jpg")
     
+    static let captainAmerica = Superhero(id: "1009134",
+                                          name: "Captain America",
+                                          description: "",
+                                          imageURL: "http://i.annihil.us/u/prod/marvel/i/mg/f/30/50fecad1f395b.jpg")
+    
+    static let warMachine = Superhero(id: "1039134",
+                                      name: "War Machine",
+                                      description: "",
+                                      imageURL: "http://i.annihil.us/u/prod/marvel/i/mg/f/30/50fecad1f395b.jpg")
+    
 }

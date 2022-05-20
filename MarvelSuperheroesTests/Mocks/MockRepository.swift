@@ -14,8 +14,6 @@ class MockRepository: Repository {
     
     private let localDataManager: LocalDataManager
     
-    private let heroes: Superheroes = .mock
-    
     init(shouldReturnError: Bool = false, localDataManager: LocalDataManager) {
         self.shouldReturnError = shouldReturnError
         self.localDataManager = localDataManager
@@ -25,6 +23,13 @@ class MockRepository: Repository {
         if shouldReturnError {
             handler(.failure(CustomError.general))
             return
+        }
+        var heroes: Superheroes {
+            if offSet <= 2 {
+                return .firstMock
+            } else {
+                return .secondMock
+            }
         }
         handler(.success(heroes))
     }
