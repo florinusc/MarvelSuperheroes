@@ -21,17 +21,11 @@ class HeroListViewModel: ViewModel {
         }
     }
     
-    private var heroes = [Superhero]() {
-        didSet {
-            heroViewModels = heroes.map { HeroTableViewCellViewModel(hero: $0) }
-        }
-    }
+    private var heroes = [Superhero]()
     
-    private var heroViewModels = [HeroTableViewCellViewModel]() {
-        didSet {
-            updateDataSourceWithHeroViewModels()
-        }
-    }
+    private var totalNumberOfHeroes = 0
+    
+    private var isLoading = false
     
     var dataSource: HeroesDataSource? {
         didSet {
@@ -44,15 +38,19 @@ class HeroListViewModel: ViewModel {
     }
     
     func getSuperheroes(_ handler: @escaping (Error?) -> Void) {
-        repository.getSuperheroes { [weak self] result in
+        isLoading = true
+        repository.getSuperheroes(offSet: heroes.count) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 handler(error)
-            case .success(let heroes):
-                self.heroes = heroes
+            case .success(let superheroes):
+                self.totalNumberOfHeroes = superheroes.total
+                self.heroes.append(contentsOf: superheroes.heroes)
+                self.updateDataSource(newHeroes: superheroes.heroes)
                 handler(nil)
             }
+            self.isLoading = false
         }
     }
     
@@ -81,6 +79,17 @@ class HeroListViewModel: ViewModel {
         }
         let hero = squadHeroes[index]
         return HeroDetailViewModel(repository: repository, hero: hero, inSquad: true)
+    }
+    
+    func getMoreSuperheroes(after indexPath: IndexPath, _ handler: @escaping (Error?) -> Void) {
+        guard !isLoading,
+              indexPath.section == snapshot.indexOfSection(.heroes),
+              indexPath.row == snapshot.numberOfItems(inSection: .heroes) - 1,
+              heroes.count < totalNumberOfHeroes
+        else {
+            return
+        }
+        getSuperheroes(handler)
     }
     
     private func refreshCarouselSnapshot() {
@@ -124,9 +133,11 @@ class HeroListViewModel: ViewModel {
         }
     }
     
-    private func updateDataSourceWithHeroViewModels() {
-        snapshot.deleteSections([.heroes])
-        snapshot.appendSections([.heroes])
+    private func updateDataSource(newHeroes: [Superhero]) {
+        let heroViewModels = newHeroes.map({ HeroTableViewCellViewModel(hero: $0) })
+        if snapshot.indexOfSection(.heroes) == nil {
+            snapshot.appendSections([.heroes])
+        }
         snapshot.appendItems(heroViewModels, toSection: .heroes)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }

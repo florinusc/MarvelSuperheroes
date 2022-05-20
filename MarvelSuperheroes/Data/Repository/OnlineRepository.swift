@@ -15,11 +15,11 @@ class OnlineRepository: Repository {
         self.localDataManager = localDataManager
     }
     
-    func getSuperheroes(_ handler: @escaping (Result<[Superhero], Error>) -> Void) {
-        SessionManager().request(type: HeroesResource.self, requestType: HeroesRequest()) { result in
+    func getSuperheroes(offSet: Int, _ handler: @escaping (Result<Superheroes, Error>) -> Void) {
+        SessionManager().request(type: HeroesResource.self, requestType: HeroesRequest(offSet: offSet)) { result in
             switch result {
             case .success(let heroesResource):
-                handler(.success(heroesResource.data.results.map { Superhero(resource: $0) }))
+                handler(.success(Superheroes(resource: heroesResource)))
             case .failure(let error):
                 handler(.failure(error))
             }

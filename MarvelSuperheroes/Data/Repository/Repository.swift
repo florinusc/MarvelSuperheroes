@@ -8,7 +8,7 @@
 import Foundation
 
 protocol Repository {
-    func getSuperheroes(_ handler: @escaping (Result<[Superhero], Error>) -> Void)
+    func getSuperheroes(offSet: Int, _ handler: @escaping (Result<Superheroes, Error>) -> Void)
     func getSquadMembers() throws -> [Superhero]
     func addSquadMember(hero: Superhero) throws
     func removeSquadMember(hero: Superhero) throws

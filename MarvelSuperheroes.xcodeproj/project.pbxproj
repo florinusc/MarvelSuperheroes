@@ -57,6 +57,8 @@
 		9FD0D56428363C830023A59A /* Superhero+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0D56328363C830023A59A /* Superhero+Mock.swift */; };
 		9FD0D56628363D0E0023A59A /* SquadHeroCollectionViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0D56528363D0E0023A59A /* SquadHeroCollectionViewCellViewModelTests.swift */; };
 		9FD0D56A28367B430023A59A /* HeroDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0D56928367B430023A59A /* HeroDetailViewModelTests.swift */; };
+		9FD0D56C283771D00023A59A /* Superheroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0D56B283771D00023A59A /* Superheroes.swift */; };
+		9FD0D56E28377C9E0023A59A /* Superheroes+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0D56D28377C9E0023A59A /* Superheroes+Mock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		9FD0D56328363C830023A59A /* Superhero+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Superhero+Mock.swift"; sourceTree = "<group>"; };
 		9FD0D56528363D0E0023A59A /* SquadHeroCollectionViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadHeroCollectionViewCellViewModelTests.swift; sourceTree = "<group>"; };
 		9FD0D56928367B430023A59A /* HeroDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModelTests.swift; sourceTree = "<group>"; };
+		9FD0D56B283771D00023A59A /* Superheroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superheroes.swift; sourceTree = "<group>"; };
+		9FD0D56D28377C9E0023A59A /* Superheroes+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Superheroes+Mock.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				9F5B0869283379CA00122600 /* Superhero.swift */,
+				9FD0D56B283771D00023A59A /* Superheroes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				9FD0D55C28362DFE0023A59A /* MockRepository.swift */,
 				9FD0D55E2836306F0023A59A /* MockLocalDataManager.swift */,
 				9FD0D56328363C830023A59A /* Superhero+Mock.swift */,
+				9FD0D56D28377C9E0023A59A /* Superheroes+Mock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -563,6 +569,7 @@
 				9F5B086128325CDD00122600 /* HeroCarouselTableViewCell.swift in Sources */,
 				9F5B085C2832329600122600 /* HeroDetailViewModel.swift in Sources */,
 				9F5B08582832328000122600 /* HeroDetailViewController.swift in Sources */,
+				9FD0D56C283771D00023A59A /* Superheroes.swift in Sources */,
 				9F5B080B282FB25500122600 /* MarvelSuperheroes.xcdatamodeld in Sources */,
 				9F5B0803282FB25500122600 /* SceneDelegate.swift in Sources */,
 				9FD0D546283502CD0023A59A /* Request.swift in Sources */,
@@ -579,6 +586,7 @@
 				9FD0D56228363B3C0023A59A /* HeroTableViewCellViewModelTests.swift in Sources */,
 				9FD0D55B28362D880023A59A /* HeroListViewModelTests.swift in Sources */,
 				9FD0D56628363D0E0023A59A /* SquadHeroCollectionViewCellViewModelTests.swift in Sources */,
+				9FD0D56E28377C9E0023A59A /* Superheroes+Mock.swift in Sources */,
 				9FD0D55D28362DFE0023A59A /* MockRepository.swift in Sources */,
 				9FD0D56428363C830023A59A /* Superhero+Mock.swift in Sources */,
 				9FD0D55F2836306F0023A59A /* MockLocalDataManager.swift in Sources */,

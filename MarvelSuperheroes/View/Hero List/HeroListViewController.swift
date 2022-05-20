@@ -86,10 +86,22 @@ class HeroListViewController: UIViewController, StoryboardViewController, ViewMo
             
         }
     }
+    
+    @IBAction private func tappedMarvelLogo() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
 
 }
 
 extension HeroListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.getMoreSuperheroes(after: indexPath) { [weak self] error in
+            if let error = error {
+                self?.presentAlert(for: error)
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let heroDetailViewModel = viewModel.detailViewModel(at: indexPath) else { return }

@@ -11,6 +11,7 @@ struct HeroesRequest: Request {
     
     private let publicKey = "e1f2b08c99f1aebfe4f2cfc7e3057c26"
     private let privateKey = "8c3f5bc06ceaa7d9d65a66cfce3aac2af8491216"
+    private let offSet: Int
     
     private var timeStamp: String {
         return String(Int(Date().timeIntervalSince1970))
@@ -34,11 +35,16 @@ struct HeroesRequest: Request {
             URLQueryItem(name: "ts", value: timeStamp),
             URLQueryItem(name: "hash", value: hash),
             URLQueryItem(name: "orderBy", value: "name"),
-            URLQueryItem(name: "limit", value: "100")
+            URLQueryItem(name: "limit", value: "100"),
+            URLQueryItem(name: "offset", value: "\(offSet)")
         ]
         components.queryItems = queryItems
         
         return components.url
+    }
+    
+    init(offSet: Int) {
+        self.offSet = offSet
     }
     
 }

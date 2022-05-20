@@ -20,12 +20,16 @@
                                 <rect key="frame" x="0.0" y="98" width="414" height="798"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MarvelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YTy-ec-4gO">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MarvelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YTy-ec-4gO">
                                 <rect key="frame" x="167" y="59" width="80" height="32"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="3bb-Dy-tkI"/>
                                     <constraint firstAttribute="height" constant="32" id="QxS-i2-JbB"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="cEt-xF-3ZN" appends="YES" id="p9s-ZH-65f"/>
+                                </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XoP-6x-YBa">
                                 <rect key="frame" x="0.0" y="97" width="414" height="1"/>
@@ -54,6 +58,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cEt-xF-3ZN">
+                    <connections>
+                        <action selector="tappedMarvelLogo" destination="BYZ-38-t0r" id="zQr-Cc-xVP"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="EdQ-zt-8hP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="121.73913043478262" y="132.58928571428572"/>
         </scene>

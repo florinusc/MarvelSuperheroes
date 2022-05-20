@@ -14,14 +14,14 @@ class MockRepository: Repository {
     
     private let localDataManager: LocalDataManager
     
-    private let heroes: [Superhero] = [.ironMan, .blackWidow]
+    private let heroes: Superheroes = .mock
     
     init(shouldReturnError: Bool = false, localDataManager: LocalDataManager) {
         self.shouldReturnError = shouldReturnError
         self.localDataManager = localDataManager
     }
     
-    func getSuperheroes(_ handler: @escaping (Result<[Superhero], Error>) -> Void) {
+    func getSuperheroes(offSet: Int, _ handler: @escaping (Result<Superheroes, Error>) -> Void) {
         if shouldReturnError {
             handler(.failure(CustomError.general))
             return
